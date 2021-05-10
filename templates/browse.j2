@@ -1,0 +1,34 @@
+{% extends "main.j2" %}
+
+{% block title %}
+  Browse
+{% endblock %}
+
+{% block header %}
+  <h1 id="top">Browse All Listed Organizations</h1>
+<a class="nav-link" href="{{ url_for('advancedSearch') }}">Search Organizations</a>
+{% endblock %}
+
+{% block body %}
+
+<div class='browse'>
+    <img src="http://flip3.engr.oregonstate.edu:8545/?q=focus_on_the_family" class="img-thumbnail">
+    <a href="{{ url_for('organizationPage') }}">Organization Title (scraped from wikipedia)</a>
+    <img src="http://flip3.engr.oregonstate.edu:8545/?q=American_Red_Cross" class="img-thumbnail">
+    <a href="{{ url_for('organizationPage') }}">Organization Title (scraped from wikipedia)</a>
+    <img src="http://flip3.engr.oregonstate.edu:8545/?q=National_Cancer_Institute" class="img-thumbnail">
+    <a href="{{ url_for('organizationPage') }}">Organization Title (scraped from wikipedia)</a>
+    <img src="http://flip3.engr.oregonstate.edu:8545/?q=City_of_Hope_National_Medical_Center" class="img-thumbnail">
+    <a href="{{ url_for('organizationPage') }}">Organization Title (scraped from wikipedia)</a>
+    <img src="http://flip3.engr.oregonstate.edu:8545/?q=american%20heart%20association" class="img-thumbnail">
+    <a href="{{ url_for('organizationPage') }}">Organization Title (scraped from wikipedia)</a>
+    <br>
+    <br>
+    <br>
+    <a href="#top">Return to Top</a>
+</div>
+  
+
+
+{% endblock %}
+

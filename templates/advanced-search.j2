@@ -1,0 +1,36 @@
+{% extends "main.j2" %}
+
+{% block title %}
+  Advanced Results
+{% endblock %}
+
+{% block header %}
+  <h1>Advanced Search</h1>
+{% endblock %}
+
+{% block body %}
+  {# Search Bar #}
+  <form class="search-bar">
+    <div class="form-group">
+      <label for="submitSearch">Search for Any Organization</label>
+      <input type="submitSearch" class="form-control" placeholder="Search for Organization..." id="submitSearch">
+    </div>
+
+    <div class="form-row align-items-center">
+      <div class="col-auto my-1">
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Category</label>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+          <option selected>Choose a Category...</option>
+          <option value="1">Health</option>
+          <option value="2">Faith</option>
+          <option value="3">Social Welfare</option>
+        </select>
+      </div>
+    </div>
+
+    <a href="{{ url_for('searchResults') }}" class="btn btn-primary">Submit</a>
+    <a href="{{ url_for('root') }}" class="btn btn-default">Cancel</a>
+
+  </form>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "main.j2" %}
+
+{% block title %}
+  Search Results
+{% endblock %}
+
+{% block header %}
+  <h1>Search Results</h1>
+{% endblock %}
+
+{% block body %}
+  {# Search Bar #}
+  <div class="container">
+    <form class="search-bar">
+      <div class="form-group">
+        <label for="submitSearch">Search Again</label>
+        <input type="submitSearch" class="form-control" placeholder="Search for Organization..." id="submitSearch">
+      </div>
+      <a href="{{ url_for('advancedSearch') }}" class="link-primary">Advanced Search</a><br><br>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <a href="{{ url_for('root') }}" class="btn btn-default">Cancel</a>
+    </form>
+  </div>
+
+<div class='search-results'>
+  <h3>Search Results</h3>
+  <p>No Results Found. Try searching again or using an Advanced Search</p>
+</div>
+  
+
+{% endblock %}
+

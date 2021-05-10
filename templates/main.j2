@@ -1,0 +1,113 @@
+<html>
+<head>
+  <title>Percent | {% block title %}Home{% endblock %}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">  
+</head>
+<style>
+/* Make the image fully responsive */
+.carousel-inner img {
+  width: 100%;
+  height: 50%;
+}
+</style>
+<body>
+
+{# Navigation Menu #}
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="{{ url_for('root') }}">Percent</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('root') }}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('advancedSearch') }}">Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('browse') }}">Browse</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<section class="content container">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+
+  {% block body %}
+
+  {# Carousel #}
+    <div class="container mt-3">
+
+      <h2>Featured Charitable Organizations</h2>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ul>
+        
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="http://flip3.engr.oregonstate.edu:8545/?q=Charitable_Organization" width="1500" height="3000">
+          </div>
+          <div class="carousel-item">
+            <img src="http://flip3.engr.oregonstate.edu:8545/?q=focus_on_the_family" width="800" height="300">
+          </div>
+          <div class="carousel-item">
+            <img src="http://flip3.engr.oregonstate.edu:8545/?q=American_Red_Cross" width="800" height="300">
+          </div>
+        </div>
+        
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+    </div>
+
+  {# Search Bar #}
+  <form class="search-bar">
+    <h6>Browse and Search for any Charitable Organization to get an overview of the services and support they provide</h6>
+
+
+    <div class="form-group">
+      <label for="submitSearch">Search for Any Organization</label>
+      <input type="submitSearch" class="form-control" placeholder="Search for Organization..." id="submitSearch">
+    </div>
+    <a href="{{ url_for('advancedSearch') }}" class="link-primary">Advanced Search</a><br><br>
+    <a href="{{ url_for('searchResults') }}" class="btn btn-primary">Submit</a>
+
+  </form>
+
+  <a class="browse" href="{{ url_for('browse') }}">Browse All Organizations</a>
+
+  {% endblock %}
+
+</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>

@@ -1,0 +1,24 @@
+header {
+    margin-top: 10px;
+}
+
+.search-bar  {
+    margin: 100px;
+}
+
+.browse img {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 8px;
+    width: 450px;
+    height: 350px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.browse {
+    text-align: center;
+    margin: 25px;
+}
+
