@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json
+from flask import Flask, render_template, json, request, redirect
 
 import database.db_connector as db
 
@@ -30,14 +30,17 @@ def browse():
 
 @app.route('/organization')
 def organizationPage():
-    return render_template("organization-page.j2")
+    name = request.args.get('name')
+    summary = request.args.get('summary')
+    imgPath = request.args.get('imgPath')
+    return render_template("organization-page.j2", name=name, summary=summary, imgPath=imgPath)
 
 
 
 
 # Listener 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 8541))
+    port = int(os.environ.get('PORT', 8542))
     app.run(port=port, debug=True) 
 
 
