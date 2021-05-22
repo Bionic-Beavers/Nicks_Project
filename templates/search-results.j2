@@ -11,21 +11,39 @@
 {% block body %}
   {# Search Bar #}
   <div class="container">
-    <form class="search-bar">
+    <form method="POST" class="search-bar">
       <div class="form-group">
-        <label for="submitSearch">Search Again</label>
-        <input type="submitSearch" class="form-control" placeholder="Search for Organization..." id="submitSearch">
+        <label for="submitSearch">Search for Any Organization</label>
+        <input class="form-control" type="text" placeholder="Search for Organization..." id="name" name="name" value="{{ request.form['name'] }}">
       </div>
-      <a href="{{ url_for('advancedSearch') }}" class="link-primary">Advanced Search</a><br><br>
-      <button type="submit" class="btn btn-primary">Submit</button>
+
+      <input class="btn btn-primary" type="submit" value='Submit'>
       <a href="{{ url_for('root') }}" class="btn btn-default">Cancel</a>
+
     </form>
+
+    <div class="search-results">
+
+    {% if Organizations == () %}
+      <div class='search-results'>
+        <h3>No Results Found</h3>
+        <p>Try searching again or using an Advanced Search</p>
+      </div>
+    {% endif %}
+
+    {% for organization in Organizations %}
+      <img src="{{ organization['imgPath'] }}" class="img-thumbnail">
+      <a href="{{ url_for('organizationPage', id=organization['organization_id']) }}">{{ organization['name'] }}</a>  
+      {% endfor %}
+      <br>
+      <br>
+      <br>
+      <a href="#top">Return to Top</a>
+
+    </div>
   </div>
 
-<div class='search-results'>
-  <h3>Search Results</h3>
-  <p>No Results Found. Try searching again or using an Advanced Search</p>
-</div>
+
   
 
 {% endblock %}
