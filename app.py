@@ -1,5 +1,7 @@
 from flask import Flask, render_template, json, request, redirect
 
+import requests
+
 import database.db_connector as db
 
 import os
@@ -79,11 +81,16 @@ def get_organization(id):
 def organizationPage(id):
     organization = get_organization(id)
 
-    name = request.args.get('name')
-    summary = request.args.get('summary')
-    imgPath = request.args.get('imgPath')
 
-    return render_template("organization-page.j2", organization=organization)
+    wikiName = organization['name']
+    payload = {"article": wikiName}
+
+    output = requests.get('https://hidden-basin-72940.herokuapp.com/', params=payload)
+
+    summary = output.text
+
+
+    return render_template("organization-page.j2", organization=organization, summary=summary)
 
 
 
