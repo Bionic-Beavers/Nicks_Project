@@ -21,13 +21,11 @@ def root():
     
     if request.method == 'POST':
         name = "%" + request.form['name'] + "%"
-        query = "SELECT * FROM Organizations WHERE name LIKE %s" 
+        query = "SELECT * FROM Organizations WHERE name LIKE %s ORDER BY name" 
         cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,))
         results = cursor.fetchall()
         cursor.close()
     
-        print(results)
-
         return render_template("search-results.j2", Organizations=results)
 
     return render_template("main.j2")
@@ -37,7 +35,7 @@ def searchResults(Organizations):
 
     if request.method == 'POST':
         name = "%" + request.form['name'] + "%"
-        query = "SELECT * FROM Organizations WHERE name LIKE %s" 
+        query = "SELECT * FROM Organizations WHERE name LIKE %s ORDER BY name" 
         cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,))
         results = cursor.fetchall()
         cursor.close()
@@ -51,8 +49,14 @@ def advancedSearch():
 
     if request.method == 'POST':
         name = "%" + request.form['name'] + "%"
-        query = "SELECT * FROM Organizations WHERE name LIKE %s" 
-        cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,))
+        
+        if request.form['category'] == '':
+            category = "%"
+        else: 
+            category = request.form['category']
+        print(category)
+        query = "SELECT * FROM Organizations WHERE name LIKE %s AND category LIKE %s ORDER BY name" 
+        cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,category))
         results = cursor.fetchall()
         cursor.close()
         
@@ -62,7 +66,7 @@ def advancedSearch():
 
 @app.route('/browse')
 def browse():
-    query = "SELECT * FROM Organizations;"
+    query = "SELECT * FROM Organizations ORDER BY name;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     cursor.close()
@@ -88,7 +92,6 @@ def organizationPage(id):
     output = requests.get('https://hidden-basin-72940.herokuapp.com/', params=payload)
 
     summary = output.text
-
 
     return render_template("organization-page.j2", organization=organization, summary=summary)
 
