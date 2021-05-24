@@ -26,9 +26,19 @@
           <option value="Social Welfare">Social Welfare</option>
           <option value="Other">Other</option>
         </select>
+        <br>
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Country</label>
+        <select class="custom-select mr-sm-2" id="country" name="country" value="{{ request.form['country'] }}">
+          <option value = "" selected>Choose a Country...</option>
+          <option value="USA">United States of America</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="Canada">Canada</option>
+          <option value="Other">Other</option>
+        </select>        
       </div>
     </div>
-
+    <br>
+    <br>
     <input class="btn btn-primary" type="submit" value='Submit'>
     <a href="{{ url_for('root') }}" class="btn btn-default">Cancel</a>
 

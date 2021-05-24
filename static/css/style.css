@@ -52,3 +52,11 @@ header {
     text-align: center;
     margin: 25px;
 }
+
+.welcome-text {
+    margin: 30px;
+    text-align: center;
+    width: 66%;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -47,6 +47,11 @@ def searchResults(Organizations):
 @app.route('/advanced-search', methods=('GET', 'POST'))
 def advancedSearch():
 
+    query = "SELECT * FROM Organizations ORDER BY name;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    cursor.close()
+
     if request.method == 'POST':
         name = "%" + request.form['name'] + "%"
         
@@ -54,15 +59,20 @@ def advancedSearch():
             category = "%"
         else: 
             category = request.form['category']
-        print(category)
-        query = "SELECT * FROM Organizations WHERE name LIKE %s AND category LIKE %s ORDER BY name" 
-        cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,category))
+
+        if request.form['country'] == '':
+            country = "%"
+        else: 
+            country = request.form['country']
+
+        query = "SELECT * FROM Organizations WHERE name LIKE %s AND category LIKE %s AND country LIKE %s ORDER BY name" 
+        cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,category,country))
         results = cursor.fetchall()
         cursor.close()
         
         return render_template("search-results.j2", Organizations=results)
 
-    return render_template("advanced-search.j2")
+    return render_template("advanced-search.j2", Organizations=results)
 
 @app.route('/browse')
 def browse():

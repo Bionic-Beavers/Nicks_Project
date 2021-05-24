@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Percent | {% block title %}Home{% endblock %}</title>
+  <title>Charity View | {% block title %}Home{% endblock %}</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -20,7 +20,7 @@
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="{{ url_for('root') }}">Percent</a>
+  <a class="navbar-brand" href="{{ url_for('root') }}">Charity View</a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -34,7 +34,7 @@
         <a class="nav-link" href="{{ url_for('root') }}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('advancedSearch') }}">Search</a>
+        <a class="nav-link" href="{{ url_for('advancedSearch') }}">Advanced Search</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('browse') }}">Browse</a>
@@ -94,6 +94,12 @@
         </a>
       </div>
     </div>
+    <div class="welcome-text">
+      <h6>Welcome to Charity View!</h6>
+      <p>Here you can browse organizations to learn about each one's services and values.</p>
+      <p>You can quickly search for any organization by name using the search bar below or you can use an advanced search to narrow down your search results.</p>
+      <p>You can also browse all listed organizations by clicking the Browse button in the menu above.</p>
+    </div>
 
   {# Search Bar #}
   <form method="POST" class="search-bar">
@@ -102,11 +108,13 @@
       <input class="form-control" type="text" placeholder="Search for Organization..." id="name" name="name" value="{{ request.form['name'] }}">
     </div>
 
+    <a class="advanced-search-btn" href="{{ url_for('advancedSearch') }}">Advanced Search</a><br>
+    <a class="advanced-search-btn" href="{{ url_for('browse') }}">Browse All Organizations</a><br><br>  
     <input class="btn btn-primary" type="submit" value='Submit'>
-
+    
   </form>
 
-  <a class="browse" href="{{ url_for('browse') }}">Browse All Organizations</a>
+  
 
   {% endblock %}
 
