@@ -26,53 +26,52 @@ def root():
         results = cursor.fetchall()
         cursor.close()
     
-        return render_template("search-results.j2", Organizations=results)
+        return searchResults(results)
 
     return render_template("main.j2")
 
-@app.route('/search-results', methods=('GET', 'POST'))
 def searchResults(Organizations):
-
-    if request.method == 'POST':
-        name = "%" + request.form['name'] + "%"
-        query = "SELECT * FROM Organizations WHERE name LIKE %s ORDER BY name" 
-        cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,))
-        results = cursor.fetchall()
-        cursor.close()
-        
-        return render_template("search-results.j2", Organizations=results)
-
-    return render_template("search-results.j2",)
+    return render_template("search-results.j2", Organizations=Organizations)
 
 @app.route('/advanced-search', methods=('GET', 'POST'))
 def advancedSearch():
 
-    query = "SELECT * FROM Organizations ORDER BY name;"
-    cursor = db.execute_query(db_connection=db_connection, query=query)
-    results = cursor.fetchall()
-    cursor.close()
-
     if request.method == 'POST':
         name = "%" + request.form['name'] + "%"
         
-        if request.form['category'] == '':
-            category = "%"
-        else: 
-            category = request.form['category']
 
-        if request.form['country'] == '':
-            country = "%"
-        else: 
-            country = request.form['country']
+        # Remove the or None
+        try:
+            if request.form['category'] == '' or None:
+                category = "%"
+            else: 
+                category = request.form['category']
 
-        query = "SELECT * FROM Organizations WHERE name LIKE %s AND category LIKE %s AND country LIKE %s ORDER BY name" 
-        cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,category,country))
-        results = cursor.fetchall()
-        cursor.close()
+            city = "%" + request.form['city'] + "%"
+
+            if request.form['state'] == '' or None:
+                state = "%"
+            else: 
+                state = request.form['state']
+
+
+            query = "SELECT * FROM Organizations WHERE name LIKE %s AND category LIKE %s AND city LIKE %s AND state LIKE %s ORDER BY name" 
+            cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,category,city,state))
+            results = cursor.fetchall()
+            cursor.close()
+
+            return searchResults(results)
         
-        return render_template("search-results.j2", Organizations=results)
+        except: 
 
-    return render_template("advanced-search.j2", Organizations=results)
+            query = "SELECT * FROM Organizations WHERE name LIKE %s ORDER BY name" 
+            cursor = db.execute_query(db_connection=db_connection, query=query, query_params=(name,))
+            results = cursor.fetchall()
+            cursor.close()
+
+            return searchResults(results)
+
+    return render_template("advanced-search.j2")
 
 @app.route('/browse')
 def browse():
@@ -110,7 +109,7 @@ def organizationPage(id):
 
 # Listener 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 8542))
+    port = int(os.environ.get('PORT', 8540))
     app.run(port=port, debug=True) 
 
 
