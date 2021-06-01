@@ -1,14 +1,19 @@
 {% extends "main.j2" %}
 
 {% block title %}
+
   Advanced Results
+
 {% endblock %}
 
 {% block header %}
+
   <h1>Advanced Search</h1>
+
 {% endblock %}
 
 {% block body %}
+
   {# Search Bar #}
   <form method="POST" class="search-bar">
     <div class="form-group">
@@ -16,6 +21,7 @@
       <input class="form-control" type="text" placeholder="Search for Organization..." id="name" name="name" value="{{ request.form['name'] }}">
     </div>
 
+  {# Select category #}
     <div class="form-row align-items-center">
       <div class="col-auto my-1">
         <label class="mr-sm-2" for="inlineFormCustomSelect">Category</label>
@@ -30,12 +36,14 @@
       </div>
     </div>
 
+  {# Select city #}
     <div class="form-group">
       <label for="cityInput">City</label>
       <input class="form-control" type="text" placeholder="City" id="city" name="city" value="{{ request.form['city'] }}">
       <br>
     </div>
 
+  {# Select state #}
     <div class="form-row align-items-center">
       <div class="col-auto my-1">
         <label class="mr-sm-2" for="inlineFormCustomSelect">State</label>
@@ -98,9 +106,11 @@
     </div>
     <br>
     <br>
+
       <a href="{{ url_for('advancedSearch') }}">Clear Search Filters</a>
     <br>
     <br>
+    
     <input class="btn btn-primary" type="submit" value='Submit'>
     <a href="{{ url_for('root') }}" class="btn btn-default">Cancel</a><br>
 
