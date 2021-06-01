@@ -7,27 +7,20 @@
 
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">  
 </head>
-<style>
-/* Make the image fully responsive */
-.carousel-inner img {
-  width: 100%;
-  height: 50%;
-}
-</style>
+
 <body>
 
 {# Navigation Menu #}
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <!-- Brand -->
   <a class="navbar-brand" href="{{ url_for('root') }}">Charity View</a>
 
-  <!-- Toggler/collapsibe Button -->
+  {# Toggler/collapsibe Button #}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <!-- Navbar links -->
+  {# Navigation Menu #}
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -54,20 +47,13 @@
 
   {% block body %}
 
-  {# Carousel #}
+  {# Carousel - Adapted from W3schools.com #}
     <div class="container mt-3">
 
       <h2>Featured Charitable Organizations</h2>
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div id="featuredOrganizations" class="carousel slide" data-ride="carousel">
 
-        <!-- Indicators -->
-        <ul class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ul>
-        
-        <!-- The slideshow -->
+        {# Slideshow #}
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="http://flip3.engr.oregonstate.edu:8545/?q=American_Red_Cross" width="800" height="300">
@@ -82,19 +68,27 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img src="http://flip3.engr.oregonstate.edu:8545/?q=City_of_Hope_National_Medical_Center" width="1500" height="3000">
+            <img src="http://flip3.engr.oregonstate.edu:8545/?q=City_of_Hope_National_Medical_Center" width="800" height="300">
             <div class="carousel-caption">            
               <a href="{{ url_for('organizationPage', id=4) }}">City of Hope National Medical Center</a>                            
           </div>
         </div>
-        
-        <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+
+        {# Left and Right Arrows #}
+        <a class="carousel-control-prev" href="#featuredOrganizations" data-slide="prev">
           <span class="carousel-control-prev-icon"></span>
         </a>
-        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+        <a class="carousel-control-next" href="#featuredOrganizations" data-slide="next">
           <span class="carousel-control-next-icon"></span>
         </a>
+
+        {# Slide Indicators #}
+        <ul class="carousel-indicators">
+          <li data-target="#featuredOrganizations" data-slide-to="0" class="active"></li>
+          <li data-target="#featuredOrganizations" data-slide-to="1"></li>
+          <li data-target="#featuredOrganizations" data-slide-to="2"></li>
+        </ul>
+
       </div>
     </div>
     <div class="welcome-text">

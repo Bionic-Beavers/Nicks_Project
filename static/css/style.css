@@ -72,3 +72,8 @@ header {
 .table-view th.id {
     width: 200px;
 }
+
+.carousel-inner img {
+    width: 100%;
+    height: 50%;
+  }
