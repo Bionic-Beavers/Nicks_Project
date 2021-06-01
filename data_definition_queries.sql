@@ -37,6 +37,7 @@ VALUES ('American Red Cross', 'Washington', 'D.C.', 'USA', 'http://flip3.engr.or
         ('United Way', 'Alexandria', 'VT', 'USA', 'http://flip3.engr.oregonstate.edu:8545/?q=United_Way', NULL, 'https://www.unitedway.org/', 'Social Welfare'),
         ('Boys and Girls Clubs of America', 'Atlanta', 'GA', 'USA', 'http://flip3.engr.oregonstate.edu:8545/?q=Boys_%26_Girls_Clubs_of_America', NULL, 'https://www.bgca.org/', 'Social Welfare'),
         ('Goodwill Industries', 'Boston', 'MA', 'USA', 'http://flip3.engr.oregonstate.edu:8545/?q=Goodwill_Industries', NULL, 'https://www.bgca.org/', 'Social Welfare'),
+        ('InterVarsity Christian Fellowship', 'Madison', 'WI', 'USA', 'http://flip3.engr.oregonstate.edu:8545/?q=InterVarsity_Christian_Fellowship', NULL, 'https://intervarsity.org/', 'Faith'),
         ('Campus Crusade for Christ', 'Orlando', 'FL', 'USA', 'http://flip3.engr.oregonstate.edu:8545/?q=Cru_(Christian_organization)', NULL, 'https://www.cru.org/', 'Faith');
 
 

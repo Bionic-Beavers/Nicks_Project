@@ -117,6 +117,18 @@ def organizationPage(id):
     return render_template("organization-page.j2", organization=organization, summary=summary)
 
 
+@app.route('/table-view', methods=('GET', 'POST'))
+def tableView():
+
+    # Get all organizations
+    query = "SELECT * FROM Organizations ORDER BY name;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    cursor.close()
+
+    return render_template("table-view.j2", Organizations=results)
+
+
 # Listener 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8540))

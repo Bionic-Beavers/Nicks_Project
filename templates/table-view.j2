@@ -1,0 +1,48 @@
+{% extends "main.j2" %}
+
+{% block title %}
+
+  Table View
+
+{% endblock %}
+
+{% block header %}
+
+<h1 id="top">Table View of All Listed Organizations</h1>
+<a class="nav-link" href="{{ url_for('advancedSearch') }}">Search Organizations</a>
+
+{% endblock %}
+
+{% block body %}
+
+<table class='table-view'>
+<thead>
+  <tr>
+    <th class='id'>ID</th>
+    <th class='name'>Organization Name</th>
+    <th>Category</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Country</th>
+</thead>
+<tbody>
+{% for organization in Organizations %}
+  <tr>
+    <td>{{ organization['organization_id'] }}</td>
+    <td><a href="{{ url_for('organizationPage', id=organization['organization_id']) }}">{{ organization['name'] }}</a></td>
+    <td>{{ organization['category' ]}}</td>
+    <td>{{ organization['city' ]}}</td>    
+    <td>{{ organization['state' ]}}</td>    
+    <td>{{ organization['country' ]}}</td>    
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+    <br>
+    <br>
+    <br>
+
+    <a href="#top">Return to Top</a>
+
+{% endblock %}
+

@@ -24,7 +24,7 @@ header {
 
 .carousel-caption {
     text-align: center;
-    width: 800px;
+    font-size: larger;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -59,4 +59,16 @@ header {
     width: 66%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.table-view th {
+    width: 500px;
+}
+
+.table-view th.name {
+    width: 1500px;
+}
+
+.table-view th.id {
+    width: 200px;
 }
